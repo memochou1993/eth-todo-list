@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { abi } from '../build/contracts/TodoList.json';
 
-const CONTRACT_ADDRESS = '0xB15DcE2F04b6C85918EcC46015c4F4d2A0cBf504';
+const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
 
 class App {
   constructor() {
