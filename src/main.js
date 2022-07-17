@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import { abi } from '../build/contracts/TodoList.json';
 
-const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS;
+const { VITE_CONTRACT_ADDRESS } = import.meta.env;
 
 class App {
   constructor() {
@@ -19,7 +19,7 @@ class App {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     await provider.send('eth_requestAccounts');
     const signer = provider.getSigner();
-    this.contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+    this.contract = new ethers.Contract(VITE_CONTRACT_ADDRESS, abi, signer);
   }
 
   async renderTasks() {
