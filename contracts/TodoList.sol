@@ -24,10 +24,8 @@ contract TodoList {
     }
 
     function updateTask(uint256 _idx, bool _completed) public {
-        Task memory _task = tasks[_idx];
-        _task.completed = _completed;
-        tasks[_idx] = _task;
-        emit TaskUpdated(_idx, _task);
+        tasks[_idx].completed = _completed;
+        emit TaskUpdated(_idx, tasks[_idx]);
     }
 
     event TaskCreated(uint256 idx, Task task);
