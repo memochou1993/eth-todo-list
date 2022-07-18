@@ -15,6 +15,17 @@ module.exports = {
       network_id: 5,
     },
   },
+  compilers: {
+    solc: {
+      version: '0.8.14',
+      settings: {
+        optimizer: {
+          enabled: false,
+          runs: 200,
+        },
+      },
+    },
+  },
   plugins: [
     'truffle-plugin-verify',
   ],
