@@ -23,22 +23,21 @@ class App {
   }
 
   async renderTasks() {
-    const taskCount = await this.contract.taskCount();
-    const list = document.getElementById('list');
-    list.textContent = '';
-    for (let i = 0; i < taskCount; i++) {
-      const task = await this.contract.tasks(i);
+    const tasks = await this.contract.getTasks();
+    const ul = document.getElementById('list');
+    ul.textContent = '';
+    tasks.forEach((task) => {
       const [idx, content, completed] = task;
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.name = idx;
       checkbox.checked = completed;
       checkbox.addEventListener('click', (e) => this.updateTask(e));
-      const item = document.createElement('li');
-      item.textContent = content;
-      item.prepend(checkbox);
-      list.append(item);
-    }
+      const li = document.createElement('li');
+      li.textContent = content;
+      li.prepend(checkbox);
+      ul.append(li);
+    });
   }
 
   async createTask() {

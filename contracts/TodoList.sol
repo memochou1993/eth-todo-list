@@ -10,15 +10,23 @@ contract TodoList {
         bool completed;
     }
 
-    mapping(uint256 => Task) public tasks;
+    Task[] public tasks;
 
     constructor() {
         createTask("Check out https://github.com/memochou1993");
     }
 
+    function getTasks()
+        external
+        view
+        returns (Task[] memory)
+    {
+        return tasks;
+    }
+
     function createTask(string memory _content) public {
         uint256 _idx = taskCount;
-        tasks[_idx] = Task(_idx, _content, false);
+        tasks.push(Task(_idx, _content, false));
         taskCount++;
         emit TaskCreated(_idx, tasks[_idx]);
     }
